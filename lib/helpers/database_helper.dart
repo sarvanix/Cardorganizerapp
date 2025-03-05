@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._init();
   static Database? _database;
-
+//sharu
   DatabaseHelper._init();
 
   Future<Database> get database async {
@@ -83,5 +83,35 @@ class DatabaseHelper {
   Future<int> deleteCard(int id) async {
     final db = await instance.database;
     return await db.delete('cards', where: 'id = ?', whereArgs: [id]);
+  }
+
+  // CRUD Operations for Folders
+  Future<int> addFolder(String name) async {
+    final db = await instance.database;
+    return await db.insert(
+      'folders',
+      {'name': name},
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+  }
+
+  Future<List<Map<String, dynamic>>> getFolders() async {
+    final db = await instance.database;
+    return await db.query('folders');
+  }
+
+  Future<int> updateFolder(int id, String newName) async {
+    final db = await instance.database;
+    return await db.update(
+      'folders',
+      {'name': newName},
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
+  Future<int> deleteFolder(int id) async {
+    final db = await instance.database;
+    return await db.delete('folders', where: 'id = ?', whereArgs: [id]);
   }
 }
