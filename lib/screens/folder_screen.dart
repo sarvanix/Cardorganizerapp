@@ -6,7 +6,7 @@ class FolderScreen extends StatefulWidget {
   @override
   _FolderScreenState createState() => _FolderScreenState();
 }
-//sharuu
+
 class _FolderScreenState extends State<FolderScreen> {
   List<Map<String, dynamic>> _folders = [];
 
@@ -83,7 +83,7 @@ class _FolderScreenState extends State<FolderScreen> {
               );
             },
             child: Card(
-              color: Colors.blueAccent,
+              color: Colors.purpleAccent,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
